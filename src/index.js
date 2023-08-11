@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <BrowserRouter>
+    <BrowserRouter basename="/gh-pages-test">
         <React.StrictMode>
             <App />
         </React.StrictMode>

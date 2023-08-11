@@ -3,24 +3,33 @@ import PropTypes from "prop-types";
 import SliderItem from "./SliderItem";
 
 const Slider = ({ works }) => {
-    const divWidth = useRef(null);
+    const slider = useRef(null);
+
     const [offset, setOffset] = useState(0);
+    console.log(offset);
     function getWidthDiv() {
-        const a = divWidth.current;
+        const a = slider.current;
         if (a) {
+            console.log(a.querySelector("div"));
             return a.querySelector("div").clientWidth;
         }
+
+        return 0;
     }
     const pageWidth = getWidthDiv();
     const handleOnLeft = () => {
-        return setOffset((prevState) => Math.min(prevState + pageWidth, 0));
+        setOffset((prevState) => Math.min(prevState + pageWidth, 0));
+        console.log("handleOnLeft");
     };
     const handleOnRight = () => {
-        setOffset((prevState) => Math.max(prevState - pageWidth, -pageWidth * 2));
+        setOffset((prevState) =>
+            Math.max(prevState - pageWidth, -pageWidth * 2)
+        );
+        console.log("handleOnRight");
     };
     return (
         <>
-        <h2>Мои работы</h2>
+            <h2>Мои работы</h2>
             <div
                 className="d-flex align-items-center mx-2 mb-4"
                 style={{ width: "550px", height: "150px" }}
@@ -38,7 +47,7 @@ const Slider = ({ works }) => {
                     }}
                 >
                     <div
-                        ref={divWidth}
+                        ref={slider}
                         className="d-flex"
                         style={{
                             height: "100%",
